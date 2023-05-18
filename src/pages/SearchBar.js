@@ -50,20 +50,65 @@ const SearchBar = () => {
         setFilteredData([])
     }
 
+
+    
+
     return (
         <div className="search">
 
             <Link to="/">Home</Link>
 
             <div className="searchInput">
-                <input type="text" placeholder="Enter a Pokemon name..." value={wordEntered} onChange={handleFilter} />
-                <div className="searchIcons">
+                <form className="max-w-sm px-4">
+                <div className="relative">
+                {wordEntered.length === 0 ? 
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="absolute top-0 bottom-0 w-6 h-6 my-auto text-gray-400 left-3"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                >
+                    <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                    />
+                </svg>
+
+                    :
+
+                <svg onClick={handleClearBtn}
+                    xmlns="http://www.w3.org/2000/svg" 
+                    className="absolute top-0 bottom-0 w-6 h-6 my-auto text-gray-400 left-3"
+                    fill="none" 
+                    viewBox="0 0 24 24" 
+                    strokeWidth={1.5} 
+                    stroke="currentColor" 
+                    
+                >
+                    <path 
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M6 18L18 6M6 6l12 12"
+                    />
+                </svg>
+
+                }
+                
+                <input type="text" placeholder="Enter a Pokemon name..." value={wordEntered} onChange={handleFilter} className="w-full py-3 pl-12 pr-4 text-gray-500 border rounded-md outline-none bg-gray-50 focus:bg-white focus:border-indigo-600"/>
+                
+                {/* <div className="searchIcons">
                     {wordEntered.length === 0 ?
                         <span>&#128270;</span> :
                         <span id="clearBtn" onClick={handleClearBtn}>&#10006;</span>
                     }
+                </div> */}
                 </div>
+                </form>
             </div>
+
             {filteredData?.length !== 0 &&
                 <div className="dataResult">
                     {filteredData?.slice(0, 15).map((item) => (
