@@ -26,13 +26,12 @@ const SearchBar = () => {
                 return newObjPokemon;
             } catch (error) {
                 // Handle the error here (e.g., log it)
-                console.log(error)
+                // console.log(error)
                 return null; // Return null for unsuccessful requests
             }
         });
 
         const pokemonResults = await Promise.allSettled(pokemonPromises);
-
 
         const newArrayOfPokemon = pokemonResults
             .filter(result => result.status === 'fulfilled') // Filter out unsuccessful requests
@@ -64,34 +63,86 @@ const SearchBar = () => {
     }
 
     return (
-        <div className="search">
+        <div className="">
 
             <Link to="/">Home</Link>
 
             <div className="searchInput">
-                <input type="text" placeholder="Enter a Pokemon name..." value={wordEntered} onChange={handleFilter} />
 
-                <div className="searchIcons">
+                <div className="max-w-sm px-4">
+                <div className="relative">
+                {wordEntered.length === 0 ?
+                <div> 
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="absolute top-0 bottom-0 w-6 h-6 my-auto text-gray-400 left-3"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                >
+                    <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                    />
+                </svg>
+                </div>
+
+                    :
+                <div onClick={handleClearBtn}>
+                <svg 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    className="absolute top-0 bottom-0 w-6 h-6 my-auto text-gray-400 left-3"
+                    fill="none" 
+                    viewBox="0 0 24 24" 
+                    strokeWidth={1.5} 
+                    stroke="currentColor" 
+
+                >
+                    <path 
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M6 18L18 6M6 6l12 12"
+                    />
+                </svg>
+                </div>
+                }
+
+                <input type="text" placeholder="Enter a Pokemon name..." value={wordEntered} onChange={handleFilter} className="w-full py-3 pl-12 pr-4 text-gray-500 border rounded-md outline-none bg-gray-50 focus:bg-white focus:border-indigo-600"/>
+
+                {/* <div className="searchIcons">
                     {wordEntered.length === 0 ?
                         <span>&#128270;</span> :
                         <span id="clearBtn" onClick={handleClearBtn}>&#10006;</span>
                     }
+                </div> */}
                 </div>
-
-
             </div>
-
+        </div>
+        
             {filteredData?.length !== 0 &&
-                <div className="dataResult">
+                <div className="flex flex-row flex-wrap justify-center gap-5 mx-auto my-10">
+                {/* <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 mx-20 my-8 "> */}
                     {filteredData?.slice(0, 15).map((item) => (
                         item && (
-                            <div className="dataResultItems" key={item.id}>
+                            <div className="rounded-lg shadow-md h-72 w-64 bg-teal-500 shrink
+                            transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-red-500 duration-300
+                            " key={item.id}>
 
                                 <Link to="/pokemon"
                                     state={item}>
 
-                                    <img src={item.sprites} alt="oops! sorry not available" />
-                                    <p>{item.name}</p>
+                                    <div className="p-2">
+                                        <img src={item.sprites} alt="oops! sorry not available" className="object-contain w-full h-48 "/>
+                                    </div>
+                                    
+                                    <div>
+                                        <h4 className="text-lg sm:text-xl font-semibold text-white ">{item.name}</h4>
+
+                                        <p className="mb-2 leading-normal"></p>
+                                    </div>
+                                    
 
                                 </Link>
                             </div>

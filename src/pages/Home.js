@@ -27,7 +27,8 @@ export const Home = () => {
             <div className="md:w-80 my-20 mx-auto ">
                 <Link to="/search" >
                     <div className="px-6 py-4 rounded-xl drop-shadow-lg text-md md:text-lg text-white text-center
-                transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-red-500 duration-300 cursor-pointer">
+                    
+                transition ease-in-out delay-150 bg-sky-500 hover:-translate-y-1 hover:scale-110 hover:bg-red-500 duration-300 cursor-pointer">
                         Search a Pokemon Now!
                     </div>
                 </Link>
