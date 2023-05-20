@@ -5,7 +5,9 @@ import '../SearchBar.css';
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import "./SearchBar"
-
+import FlavorText from "../Components/FlavorText";
+import PokemonTypes from "../Components/PokemonTypes";
+import getPokemonSpecies from "../Functions/getPokemonSpecies";
 
 // export const Pokemon = () => {
 //     const location = useLocation();
@@ -33,17 +35,65 @@ import "./SearchBar"
 
 export const Pokemon = (props) => {
     const location = useLocation();
-    console.log(location)
+    const {state} = location;
+    const name = state.name;
+
+    const { data: eachPokemonData } = useQuery(["eachPokemonData"], async () => {
+        try {
+        
+        //This should be inside this async func as this returns a promise    
+        const filteredPokemonName = await getPokemonSpecies(name);
+
+        const res = await Axios.get(`https://pokeapi.co/api/v2/pokemon-species/${filteredPokemonName}`);
+        
+        const allFlavorText = res.data.flavor_text_entries;
+        const engFlavorText = allFlavorText?.filter((item) => {
+            if (item.language.name === "en") {
+                return item
+            }
+        });
+        
+        return engFlavorText[0].flavor_text;
+    } catch(error) {
+        console.log(error)
+        return null;
+    }
+    });
+
     return (
         location && (
             <div>
-                <div>
-                    <Link to="/">Home</Link>
+                    <Link to="/">
+                        <p className="text-white m-8 hover:underline underline-offset-2">Go to Home</p>
+                    </Link>
+
+                    <Link to="/search">
+                        <p className="text-white m-8 hover:underline underline-offset-2">Go Back</p>
+                    </Link>
+
+                <div className="flex flex-row flex-wrap justify-center gap-5 mx-auto my-10">
+                    <div className="rounded-lg shadow-md w-64 bg-teal-500 shrink overflow-hidden">
+
+                    
+                        <div>
+                            <img src={state.sprites} className="object-contain w-full h-48 mt-2"/>
+                        </div>
+                
+                        <div>
+                            <h4 className="text-lg sm:text-xl font-semibold text-white pb-3">
+                                {state.name}
+                            </h4>
+                        </div>
+
+                        <div className="flex justify-center bg-teal-600 pt-3 pb-4">
+                            <PokemonTypes types={state.types}/>
+                        </div>
+                
+                        <div className="leading-normal text-white bg-teal-700">
+                            <FlavorText eachPokemonData={eachPokemonData}/>
+                        </div>
+                    </div>
                 </div>
-
-                <img src={location.state.sprites} />
-                <p>{location.state.name}</p>
-
             </div>
         )
     )

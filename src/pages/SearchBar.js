@@ -11,7 +11,7 @@ const SearchBar = () => {
     const [wordEntered, setWordEntered] = useState("");
 
     const { data: pokemonData } = useQuery(["pokemon"], async () => {
-        const res = await Axios.get('https://pokeapi.co/api/v2/pokemon-form/?limit=2000&offset=0')
+        const res = await Axios.get('https://pokeapi.co/api/v2/pokemon/?limit=2000&offset=0')
 
         const pokemonPromises = res.data.results.map(async p => {
             try {
@@ -20,7 +20,8 @@ const SearchBar = () => {
                 const newObjPokemon = {
                     name: resDetail.data.name,
                     sprites: resDetail.data.sprites.front_default,
-                    id: resDetail.data.id
+                    id: resDetail.data.id,
+                    types: resDetail.data.types,
                 };
 
                 return newObjPokemon;
@@ -65,7 +66,9 @@ const SearchBar = () => {
     return (
         <div className="">
 
-            <Link to="/">Home</Link>
+            <Link to="/">
+                <p className="text-white m-8 hover:underline underline-offset-2">Go to Home</p>
+            </Link>
 
             <div className="searchInput">
 
@@ -138,7 +141,7 @@ const SearchBar = () => {
                                     </div>
                                     
                                     <div>
-                                        <h4 className="text-lg sm:text-xl font-semibold text-white ">{item.name}</h4>
+                                        <h4 className="text-lg sm:text-xl font-semibold text-white">{item.name}</h4>
 
                                         <p className="mb-2 leading-normal"></p>
                                     </div>
