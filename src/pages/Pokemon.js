@@ -7,7 +7,9 @@ import { useLocation } from "react-router-dom";
 import "./SearchBar"
 import FlavorText from "../Components/FlavorText";
 import PokemonTypes from "../Components/PokemonTypes";
-import getPokemonSpecies from "../Functions/getPokemonSpecies";
+import getPokemonSpecies from "../Functions/getFlavorText";
+import handleImageError from "../Functions/handleImageError";
+import handlePlaceholderImage from "../Functions/handlePlaceholderImage";
 
 // export const Pokemon = () => {
 //     const location = useLocation();
@@ -37,6 +39,7 @@ export const Pokemon = (props) => {
     const location = useLocation();
     const {state} = location;
     const name = state.name;
+    const placeholderImage = handlePlaceholderImage();
 
     const { data: eachPokemonData } = useQuery(["eachPokemonData"], async () => {
         try {
@@ -47,6 +50,7 @@ export const Pokemon = (props) => {
         const res = await Axios.get(`https://pokeapi.co/api/v2/pokemon-species/${filteredPokemonName}`);
         
         const allFlavorText = res.data.flavor_text_entries;
+        if (allFlavorText.length !== 0) {
         const engFlavorText = allFlavorText?.filter((item) => {
             if (item.language.name === "en") {
                 return item
@@ -54,6 +58,9 @@ export const Pokemon = (props) => {
         });
         
         return engFlavorText[0].flavor_text;
+        } else {
+            return null;
+        }
     } catch(error) {
         console.log(error)
         return null;
@@ -76,7 +83,7 @@ export const Pokemon = (props) => {
 
                     
                         <div>
-                            <img src={state.sprites} className="object-contain w-full h-48 mt-2"/>
+                            <img src={state.sprites || placeholderImage} onError={(event)=> {handleImageError(event)}} className="object-contain w-full h-48 mt-2"/>
                         </div>
                 
                         <div>

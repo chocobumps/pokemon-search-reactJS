@@ -6,7 +6,7 @@ export const Home = () => {
 
     function ImageContainer(props) {
         return (
-            <img src={props.src} className="object-contain h-80 w-96 lg:w-5/12" />
+            <img src={props.src} className="object-contain h-80 w-96 lg:w-4/12" />
         )
     }
 
@@ -19,7 +19,7 @@ export const Home = () => {
 
             <div className="flex justify-center bg-white">
                 <ImageContainer
-                    src="https://www.pngmart.com/files/22/Pokemon-Yellow-Logo-PNG-Pic.png"
+                    src="https://64.media.tumblr.com/a1e87d2030a73aee16661e8807da6c1d/tumblr_mkhnmmFwaA1rxvkeso1_500.gif"
                 />
             </div>
             {/* <h1 className="text-4xl">WELCOME TO POKEMON SEARCH</h1> */}

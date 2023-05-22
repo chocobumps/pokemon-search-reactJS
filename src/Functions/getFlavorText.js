@@ -10,6 +10,8 @@ const results = res.data.results;
 const filteredPokemonName = results.filter((item) => {
             if (pokeName.includes(item?.name)) {
                 return item.name
+            } else {
+                return null;
             }
         });
 // console.log(filteredPokemonName)

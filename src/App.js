@@ -12,7 +12,7 @@ function App() {
   const client = new QueryClient();
 
   return (
-    <div className='App h-screen w-screen bg-blue-800 overflow-scroll'>
+    <div className='App h-screen w-screen bg-blue-700 overflow-scroll'>
       <QueryClientProvider client={client}>
         <Router>
           <Routes>
