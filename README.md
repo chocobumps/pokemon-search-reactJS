@@ -2,6 +2,8 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## View the [website](https://chocobumps.github.io/pokemon-search-reactJS/) here.
+
 ## Available Scripts
 
 In the project directory, you can run:
