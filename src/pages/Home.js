@@ -1,19 +1,14 @@
+import React from "react";
 import { Link } from "react-router-dom";
-import "./Home.css"
-import axios from "axios";
 
 export const Home = () => {
 
     function ImageContainer(props) {
         return (
-            <img src={props.src} className="object-contain h-80 w-96 lg:w-4/12" />
+            <img src={props.src} className="object-contain h-80 w-96 lg:w-4/12" alt="" />
         )
     }
 
-    const handleClick = async () => {
-        const res = await axios.get('https://pokeapi.co/api/v2/pokemon-form/103/')
-        console.log(res.data)
-    }
     return (
         <div className="w-screen h-screen flex flex-col">
 
@@ -32,7 +27,6 @@ export const Home = () => {
                         Search a Pokemon Now!
                     </div>
                 </Link>
-                {/* <button onClick={handleClick}>Click me</button> */}
             </div>
         </div>
     );

@@ -1,11 +1,10 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
 
 const PokemonTypes = (props) => {
     const allTypes = {
         normal: "bg-pokeType-normal",
-	    fighting: "bg-pokeType-fighting",
-	    flying: "bg-pokeType-flying",
+        fighting: "bg-pokeType-fighting",
+        flying: "bg-pokeType-flying",
         poison: "bg-pokeType-poison",
         ground: "bg-pokeType-ground",
         rock: "bg-pokeType-rock",
@@ -32,16 +31,16 @@ const PokemonTypes = (props) => {
                 const typeName = item.type.name
                 const typeColor = allTypes[typeName];
 
-                if(typeColor){
-                    return (                      
-                            <div key={item.slot} className={`${typeColor} text-white rounded-lg shadow-md w-20 pt-1 pb-2 px-4 mx-1 inline`}>
-                                {typeName}
-                            </div>                       
-                        )
-                }           
+                if (typeColor) {
+                    return (
+                        <div key={item.slot} className={`${typeColor} text-white rounded-lg shadow-md w-20 pt-1 pb-2 px-4 mx-1 inline`}>
+                            {typeName}
+                        </div>
+                    )
+                } else { return null }
             }
-        )}
-      </div>  
+            )}
+        </div>
     )
 }
 

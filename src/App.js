@@ -1,4 +1,3 @@
-import react from 'react';
 import './App.css';
 import SearchBar from "./pages/SearchBar"
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -14,7 +13,7 @@ function App() {
       <QueryClientProvider client={client}>
         <Router>
           <Routes>
-            <Route exact path="/" element={<Home />} />
+            <Route path="/" element={<Home />} />
             <Route path="/search" element={<SearchBar />} />
             <Route path="/pokemon" element={<Pokemon />} />
             <Route path="/*" element={<h1>PAGE NOT FOUND</h1>} />
