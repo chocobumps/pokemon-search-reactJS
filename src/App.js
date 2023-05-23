@@ -1,10 +1,8 @@
 import react from 'react';
 import './App.css';
-import { useState, useEffect } from 'react';
 import SearchBar from "./pages/SearchBar"
-import axios from 'axios';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import { Home } from './pages/Home';
 import { Pokemon } from './pages/Pokemon';
 
@@ -15,12 +13,12 @@ function App() {
     <div className='App h-screen w-screen bg-blue-700 overflow-scroll'>
       <QueryClientProvider client={client}>
         <Router>
-          <Routes>
-            <Route path="/" element={<Home />} />
+          <Switch>
+            <Route exact path="/" element={<Home />} />
             <Route path="/search" element={<SearchBar />} />
             <Route path="/pokemon" element={<Pokemon />} />
             <Route path="/*" element={<h1>PAGE NOT FOUND</h1>} />
-          </Routes>
+          </Switch>
         </Router>
       </QueryClientProvider>
     </div >
