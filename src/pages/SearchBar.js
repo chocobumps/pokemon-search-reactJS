@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import Axios from 'axios';
 import { Link } from "react-router-dom";
 import "./Pokemon"
-import running_pikachu from "../images/running_pikachu.gif"
+import pikachu_loading from "../images/pikachu_loading.webp"
 
 const SearchBar = () => {
 
@@ -49,8 +49,8 @@ const SearchBar = () => {
         return (
             <div className="flex justify-center flex-wrap items-center w-full h-96" >
                 <div className="">
-                    <img src={running_pikachu} className="object-contain w-52 h-52" />
-                    <p className="text-white text-xl">Loading please wait...</p>
+                    <img src={pikachu_loading} className="object-contain w-52 h-52" />
+                    <p className="text-white text-xl">Loading please wait . . .</p>
                 </div>
             </div>
         )
