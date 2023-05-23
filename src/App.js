@@ -13,12 +13,12 @@ function App() {
     <div className='App h-screen w-screen bg-blue-700 overflow-scroll'>
       <QueryClientProvider client={client}>
         <Router>
-          <Switch>
+          <Routes>
             <Route exact path="/" element={<Home />} />
             <Route path="/search" element={<SearchBar />} />
             <Route path="/pokemon" element={<Pokemon />} />
             <Route path="/*" element={<h1>PAGE NOT FOUND</h1>} />
-          </Switch>
+          </Routes>
         </Router>
       </QueryClientProvider>
     </div >
