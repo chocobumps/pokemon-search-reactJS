@@ -9,7 +9,7 @@ const SearchBar = () => {
     const [filteredData, setFilteredData] = useState([]);
     const [wordEntered, setWordEntered] = useState("");
 
-    const { data: pokemonData } = useQuery(["pokemon"], async () => {
+    const { data: pokemonData, isLoading, isError } = useQuery(["pokemon"], async () => {
         const res = await Axios.get('https://pokeapi.co/api/v2/pokemon/?limit=2000&offset=0')
 
         const pokemonPromises = res.data.results.map(async p => {
@@ -38,8 +38,19 @@ const SearchBar = () => {
             .map(result => result.value); // Extract the values of successful requests
 
         return newArrayOfPokemon;
+
+    }, {
+        cacheTime: 1000 * 60 * 60,
+        staleTime: 1000 * 60 * 5,
     });
 
+    if (isLoading) {
+        return <p>Loading...</p>;
+    }
+
+    if (isError) {
+        return <p>Error occured while fetching data.</p>
+    }
 
     const handleFilter = (event) => {
         const searchWord = event.target.value;
@@ -61,6 +72,7 @@ const SearchBar = () => {
         setWordEntered("")
         setFilteredData([])
     }
+
 
     return (
         <div className="">
