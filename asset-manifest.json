@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/pokemon-search-reactJS/static/css/main.877b8e28.css",
-    "main.js": "/pokemon-search-reactJS/static/js/main.c43e8908.js",
-    "static/media/running_pikachu.gif": "/pokemon-search-reactJS/static/media/running_pikachu.37abb1a645419f8c0d6e.gif",
+    "main.js": "/pokemon-search-reactJS/static/js/main.069a0e1f.js",
     "static/media/image_not_available.png": "/pokemon-search-reactJS/static/media/image_not_available.340253f993a2e5ca3a42.png",
+    "static/media/pikachu_loading.webp": "/pokemon-search-reactJS/static/media/pikachu_loading.4152f07e01605f071a77.webp",
     "index.html": "/pokemon-search-reactJS/index.html",
     "main.877b8e28.css.map": "/pokemon-search-reactJS/static/css/main.877b8e28.css.map",
-    "main.c43e8908.js.map": "/pokemon-search-reactJS/static/js/main.c43e8908.js.map"
+    "main.069a0e1f.js.map": "/pokemon-search-reactJS/static/js/main.069a0e1f.js.map"
   },
   "entrypoints": [
     "static/css/main.877b8e28.css",
-    "static/js/main.c43e8908.js"
+    "static/js/main.069a0e1f.js"
   ]
 }
